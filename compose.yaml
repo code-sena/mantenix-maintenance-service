@@ -1,0 +1,18 @@
+# Local database for maintenance-service (ADR-004: one database per service).
+# Start:  docker compose up -d
+# Stop:   docker compose down
+services:
+  maintenance-db:
+    image: postgres:17
+    container_name: mantenix-maintenance-db
+    environment:
+      POSTGRES_DB: mantenix_maintenance
+      POSTGRES_USER: mantenix
+      POSTGRES_PASSWORD: mantenix
+    ports:
+      - "5434:5432"
+    volumes:
+      - maintenance-data:/var/lib/postgresql/data
+
+volumes:
+  maintenance-data:
